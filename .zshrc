@@ -16,6 +16,8 @@ source "${ZINIT_HOME}/zinit.zsh"
 # Theme
 zinit light spaceship-prompt/spaceship-prompt
 
+SPACESHIP_PROMPT_ASYNC=false
+
 # Zinit plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
@@ -24,10 +26,7 @@ zinit light Aloxaf/fzf-tab
 zinit light paulirish/git-open
 
 # Oh-My-Zsh snippets
-zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
-zinit snippet OMZP::sudo
-zinit snippet OMZP::archlinux
 zinit snippet OMZP::aws
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
@@ -68,6 +67,7 @@ alias ls='eza --icons --group-directories-first'
 alias vim='nvim'
 alias c='clear'
 alias taze="nlx taze"
+alias cleanup="npkill -d ~/Developer/ --delete-all"
 
 # Shell integrations
 eval "$(fzf --zsh)"
@@ -90,5 +90,11 @@ case ":$PATH:" in
 esac
 
 # Additional PATH configurations
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+[[ -s "/Users/nightkungz/.gvm/scripts/gvm" ]] && source "/Users/nightkungz/.gvm/scripts/gvm"
+eval "$(rbenv init -)"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

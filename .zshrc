@@ -16,10 +16,8 @@ source "${ZINIT_HOME}/zinit.zsh"
 # Theme
 zinit light spaceship-prompt/spaceship-prompt
 
-SPACESHIP_PROMPT_ASYNC=false
-
 # Zinit plugins
-zinit light zsh-users/zsh-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
@@ -55,13 +53,6 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-# Completion styling
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
-
 # Aliases
 alias ls='eza --icons --group-directories-first'
 alias vim='nvim'
@@ -70,8 +61,8 @@ alias taze="nlx taze"
 alias cleanup="npkill -d ~/Developer/ --delete-all"
 
 # Shell integrations
-eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
+# eval "$(fzf --zsh)"
+# eval "$(zoxide init --cmd cd zsh)"
 
 # Development tools setup
 # NVM configuration
@@ -94,7 +85,24 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 [[ -s "/Users/nightkungz/.gvm/scripts/gvm" ]] && source "/Users/nightkungz/.gvm/scripts/gvm"
-eval "$(rbenv init -)"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+# bun completions
+[ -s "/Users/night/.bun/_bun" ] && source "/Users/night/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/night/.antigravity/antigravity/bin:$PATH"
+
+# Added by Windsurf
+export PATH="/Users/night/.codeium/windsurf/bin:$PATH"
+export PATH="$PATH:/opt/homebrew/Caskroom/flutter/latest/flutter/bin"
+
+# Added by Antigravity
+export PATH="/Users/night/.antigravity/antigravity/bin:$PATH"
